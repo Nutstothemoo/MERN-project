@@ -1,5 +1,5 @@
 import express from 'Express';
-import { getFeedPosts, getUserPosts, likePost} from "./controllers/posts.js";
+import { getFeedposts, getUserPosts, likePost} from "../controllers/posts.js";
 import { verifyToken } from '../middleware/auth.js';
 
 
@@ -7,7 +7,7 @@ const router =express.Router();
 
 // READ
 
-router.get("/", verifyToken, getFeedPosts);
+router.get("/", verifyToken, getFeedposts);
 router.get("/:userId/posts", verifyToken, getUserPosts);
 
 // UPDATE
