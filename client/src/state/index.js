@@ -10,15 +10,23 @@ const initialState = {
 export const authSlice = createSlice({
     name:'auth',
     initialState,
-    reducer:{
+    reducers:{
         setMode:(state) =>{
             state.mode = state.mode === "light" ? "dark": "light"
         },
         setLogin: (state,action) => {
+            // le state est deja une copie du state original donc pas de problème d'immutabilité classique de react
+            // action est un objet qui contient le type de l'action et le payload qui définit la data utilisé pour changer le state
+            // action = {type: authSlice/setLogin payload = "userinfo"}
+            // le formatage de redux est important au moment de dispatcher une action au sein d'un composant
             state.user = action.payload.user;
             state.token = action.payload.token;
         },
-        setLogout:(state, action)=> {
+        setLogout:(state) =>{
+            state.user= null;
+            state.token=null;
+        },
+        setFriends:(state, action)=> {
             if (state.user){
                 state.user.friends = action.payload.friends
             } else {
@@ -30,11 +38,9 @@ export const authSlice = createSlice({
         },
         setPost:(state, action)=>{
             const updatedPosts = state.posts.map((post) => {
-                if (post._id === action.payload.post_id){ 
-                return action.payload.post;
-            }
+                if (post._id === action.payload.post_id) return action.payload.post;
                 return post;
-            })
+            });
             state.posts = updatedPosts;
         }
     }
