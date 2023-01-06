@@ -21,7 +21,7 @@ const primaryLight = theme.palette.primary.light;
 const alt= theme.palette.background.alt;
 
 const fullName = `${user.firstName} ${user.lastName}`
-
+// grace à material UI component on passe pas par sx
     return
     <FlexBetween padding ="1rem 6%" backgroundColor={alt}>
         <FlexBetween gap= "1.75 rem">
@@ -37,8 +37,8 @@ const fullName = `${user.firstName} ${user.lastName}`
                 },
             }}
             >
-            FuegCollective 
-            </Typography>
+            FuegCollectiv
+            </Typography> 
 
             {/* SEARCHBAR */}
             {isNonMobileScreens && (<FlexBetween 
@@ -47,7 +47,7 @@ const fullName = `${user.firstName} ${user.lastName}`
                 gap="3rem" 
                 padding="0.1 rem 1.5 rem"
                 >
-                <InputBase placeholder="Rechercher" />
+                <InputBase placeholder="Rechercher.." />
                 <IconButton>
                     <Search />
                 </IconButton>
@@ -55,16 +55,46 @@ const fullName = `${user.firstName} ${user.lastName}`
                 )}
         </FlexBetween>
 
-        {/* NAVABAR POUR ORDINATEUR */}
+        {/* NAVBAR POUR ORDINATEUR */}
 
         {isNonMobileScreens ? (
         <FlexBetween gap="2rem" >
-            <IconButton onClick={()=>dispatch(setMode())}>
-                {theme.palette.mode === "dark"? (
-                    <Darkmode sx
+            <IconButton onClick={()=> dispatch(setMode())}>
+                {theme.palette.mode === "dark" ? (
+                    <Darkmode sx= {{fontSize:"25px"}} />
+                ):(
+                    <Lightmode sx= {{color: dark, fontSize:"25px"}} />
                 )}
 
             </IconButton>
+            <Message sx = {{fontSize:"25px"}} />
+            <Notification sx = {{fontSize:"25px"}} />
+            <Help  sx = {{fontSize:"25px"}}/>
+            <FormControl variant="standard" value={fullName}>
+                <Select
+                value={fullName}
+                sx={{backgroundColor:neutralLight,
+                width:"150px",
+                borderRadius:"0.25rem",
+                p:"025rem 1rem",
+                "& .MuiSvgIcon-root:"{
+                    pr:"0.25rem",
+                    width:"3rem"
+                },
+                "& .MuiSelect-select: focus" : {
+                    backgroundColor: neutralLight
+                }
+            }}
+            input={<InputBase/>}
+            >
+                    <MenuItem value= {fullName}>
+                        <Typography>{fullName}</Typography>
+                    </MenuItem>
+                    <MenuItem onClick={()=>{}}> Se déconnecter 
+                    </MenuItem>
+                </Select>
+
+            </FormControl>
         </FlexBetween>) : (
         <IconButton>
 

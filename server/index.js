@@ -21,18 +21,27 @@ import {users, posts} from "./data/index.js"
 
 // CONFIGURATION DU SERVEUR
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Permet de decoder les caractère %encoded dans les noms de fichier
+const filename = fileURLToPath(import.meta.url);
+
+
+const _DirectoryName = path.dirname(filename);
+
 dotenv.config();
 const app = express();
+
 app.use(express.json());
+
+// rajoute des http headers au requete http
+
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
+
 app.use(morgan("common"));
 app.use(bodyParser.json({limit:"30mb", extended:true}));
 app.use(bodyParser.urlencoded({limit:"30mb", extended:true}));
 app.use(cors());
-app.use("/assets", express.static(path.join(__dirname, 'public/assets')));
+app.use("/assets", express.static(path.join(_DirectoryName, 'public/assets')));
 
 // STOCKAGE FICHIER qui vient du repo github de multer
 
