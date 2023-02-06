@@ -4,13 +4,13 @@ const UserSchema = new mongoose.Schema(
     {
         firstName:{
             type:String,
-            require: true,
+            required: true,
             min:2,
             max:45
         },
         lastName:{
             type:String,
-            require: true,
+            required: true,
             min:2,
             max:50
         },
@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema(
         occupation:String,
         viewedProfile: Number,
         impressions: Number,  
-        }, {timestamps:true}
+    }, {timestamps:true}
 );
 
 const User = mongoose.model("User", UserSchema)
