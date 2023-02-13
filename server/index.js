@@ -14,13 +14,11 @@ import authRoutes from "./routes/auth.js"
 import userRoutes from "./routes/user.js"
 import postRoutes from "./routes/posts.js"
 import { verifyToken } from "./middleware/auth.js";
-// import User from "./models/User.js"
-// import Post from "./models/Post.js"
-// import {users, posts} from "./data/index.js"
 
 // CONFIGURATION DU SERVEUR
 
 // Permet de decoder les caractère %encoded dans les noms de fichier
+
 const filename = fileURLToPath(import.meta.url);
 console.log(filename)
 
@@ -39,8 +37,8 @@ app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
 
 app.use(morgan("common"));
-app.use(bodyParser.json({limit:"40mb", extended:true}));
-app.use(bodyParser.urlencoded({limit:"40mb", extended:true}));
+app.use(bodyParser.json({limit:"50mb", extended:true}));
+app.use(bodyParser.urlencoded({limit:"50mb", extended:true}));
 app.use(cors());
 app.use("/assets", express.static(path.join(_DirectoryName, 'public/assets')));
 
@@ -66,7 +64,7 @@ app.post("/posts", verifyToken, upload.single("picture"), createPost);
 // ROUTES WITH FILES
 
 app.use("/auth", authRoutes);
-app.use("/user", userRoutes);
+app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
 

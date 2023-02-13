@@ -30,6 +30,8 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
+
+  // CUSTOM HOOK  de MUI qui renvoie BOOL pratique pour par media query en css
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
 
   const theme = useTheme();
@@ -56,7 +58,7 @@ const Navbar = () => {
             },
           }}
         >
-          Sociopedia
+          Fueg Collective
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween

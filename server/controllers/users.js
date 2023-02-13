@@ -8,6 +8,7 @@ export const getUser = async (req, res) => {
         res.status(200).json(user);
 
     } catch {
+        console.log(err.message)
         res.status(400).json({message: err.message})
     }
 }
@@ -30,6 +31,7 @@ export const getUserFriends = async (req, res) => {
         res.status(200).json(formattedFriends);
 
         } catch(err) {
+            console.log(err.message)
             res.status(404).json({message: err.message})
         }
     }
@@ -64,6 +66,7 @@ export const getUserFriends = async (req, res) => {
             // ON ENVOIE AU FRONTEND  la liste de friend mise a jour formatée en map
 
         } catch(err) {
+            console.log(err.message)
             res.status(404).json({message: err.message})
         }
     }

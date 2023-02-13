@@ -9,12 +9,16 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   const token = useSelector((state) => state.token);
 
   const getPosts = async () => {
-    const response = await fetch("http://localhost:3001/posts", {
+    try {const response = await fetch("http://localhost:3001/posts", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
+
     const data = await response.json();
     dispatch(setPosts({ posts: data }));
+  } catch(error){
+    console.error(error)
+  }
   };
 
   const getUserPosts = async () => {
@@ -39,7 +43,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   return (
     <>
-      {posts.map(
+        {posts.map(
         ({
           _id,
           userId,
