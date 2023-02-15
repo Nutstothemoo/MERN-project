@@ -11,7 +11,8 @@ const FriendListWidget = ({ userId }) => {
   const token = useSelector((state) => state.token);
   const friends = useSelector((state) => state.user.friends);
 
-  const getFriends = async () => {
+async function getFriends () {
+  try {
     const response = await fetch(
       `http://localhost:3001/users/${userId}/friends`,
       {
@@ -21,7 +22,10 @@ const FriendListWidget = ({ userId }) => {
     );
     const data = await response.json();
     dispatch(setFriends({ friends: data }));
-  };
+  } catch(err) {
+    console.log(err)
+  }
+};
 
   useEffect(() => {
     getFriends();

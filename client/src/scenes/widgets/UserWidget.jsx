@@ -28,13 +28,10 @@ const UserWidget = ({ userId, picturePath }) => {
     });
     
     const data = await response.json();
-    console.log(data);
     setUser(data);
   };
 
-  useEffect(() => {
-    getUser();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {getUser();}, []); 
 
   if (!user) {
     return null;
