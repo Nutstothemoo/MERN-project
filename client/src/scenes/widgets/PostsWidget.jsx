@@ -39,7 +39,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     } else {
       getPosts();
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -53,7 +53,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
           location,
           picturePath,
           userPicturePath,
-          likes,
+          like,
           comments,
         }) => (
           <PostWidget
@@ -65,7 +65,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
             location={location}
             picturePath={picturePath}
             userPicturePath={userPicturePath}
-            likes={likes}
+            like={like}
             comments={comments}
           />
         )

@@ -17,12 +17,10 @@ export const getUserFriends = async (req, res) => {
     try {
         const {id}= req.params;
         const user = await User.findById(id);        
-        res.status(200).json(user);
-
-        const friends = await Promise.all(
+        let friends = [];
+        friends = await Promise.all(
             user.friends.map((id)=> User.findById(id))
         );
-
         const formattedFriends = friends.map(({_id, firstName, lastName , occupation, location, picturePath})=>{
             return {_id, firstName, lastName , occupation, location, picturePath}
         });
@@ -31,7 +29,6 @@ export const getUserFriends = async (req, res) => {
         res.status(200).json(formattedFriends);
 
         } catch(err) {
-            console.log(err.message)
             res.status(404).json({message: err.message})
         }
     }

@@ -20,11 +20,8 @@ import { verifyToken } from "./middleware/auth.js";
 // Permet de decoder les caractère %encoded dans les noms de fichier
 
 const filename = fileURLToPath(import.meta.url);
-console.log(filename)
-
 
 const _DirectoryName = path.dirname(filename);
-console.log(_DirectoryName)
 
 dotenv.config();
 const app = express();

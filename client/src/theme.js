@@ -1,4 +1,5 @@
-// color design tokens export
+// COLOR DESIGN
+
 export const colorTokens = {
   grey: {
     0: "#FFFFFF",
@@ -29,14 +30,13 @@ export const colorTokens = {
   },
 };
 
-// mui theme settings
+// MATERIAL UI SETTING 
 
 export const themeSettings = (mode) => {
   return {
     palette: {
       mode: mode,
-      ...(mode === "dark"
-        ? {
+      ...(mode === "dark" ? {
             // palette pour dark mode
             primary: {
               dark: colorTokens.primary[200],
