@@ -1,7 +1,8 @@
+import { Router } from 'express';
 import { getFeedposts, getUserPosts, likePost} from "../controllers/posts.js";
 
 
-const router =express.Router();
+const router = Router();
 
 // READ
 
